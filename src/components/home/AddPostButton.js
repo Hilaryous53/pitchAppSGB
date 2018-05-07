@@ -6,29 +6,44 @@ class AddPostButton extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			showModal: true,
+			showModal: false,
 		};
-		this.handleClick = this.handleClick.bind(this);
+		this.handleCloseClick = this.handleCloseClick.bind(this);
+		this.handleOpenClick = this.handleOpenClick.bind(this);
 	}
 
-	handleClick(e) {
+	handleOpenClick(e) {
 		e.preventDefault();
 		this.setState({
 			showModal: true
 		})
+		console.log("open link clicked");
   }
+
+	handleCloseClick(e) {
+		e.preventDefault();
+		this.setState({
+			showModal: false
+		})
+		console.log('The close link was clicked.');
+	}
+
+
 
 	render() {
 		return (
 			<div>
 			<Button
 				color="info"
-				onClick={this.handleClick}>
+				onClick={this.handleOpenClick}>
 					Add Post
 			</Button>
-        <Modal showModal={this.state.showModal}>
-          Here is some content for the modal
-        </Modal>
+      <Modal
+				closeModal={this.handleCloseClick}
+				showModal={this.state.showModal}
+				>
+        Here is some content for the modal
+      </Modal>
 			</div>
 		);
 	}

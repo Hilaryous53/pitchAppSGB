@@ -3,23 +3,11 @@ import React, {Component} from 'react';
 class Modal extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      showModal: this.props.showModal,
-    };
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(e) {
-		e.preventDefault();
-		this.setState({
-			showModal: false
-		})
-		console.log('The close link was clicked.');
   }
 
   render() {
     // Render nothing if the "show" prop is false
-    if(!this.state.showModal) {
+    if (!this.props.showModal) {
       return null;
     }
 
@@ -47,7 +35,7 @@ class Modal extends Component {
     return (
       <div style={backdropStyle}>
         <div style={modalStyle}>
-          <button onClick={this.handleClick}>
+          <button onClick={this.props.closeModal}>
             Close
           </button>
         </div>
