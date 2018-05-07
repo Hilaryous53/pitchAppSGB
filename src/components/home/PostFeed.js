@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react';
 import GraphService from '../../service/GraphService';
 import Moment from 'react-moment';
 
-class PostFeed extends React.Component {
+class PostFeed extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -43,10 +43,10 @@ class PostFeed extends React.Component {
 				{this.state.posts.map(post =>
 					<div>
 						<img height="160px" src={post.imageURL} alt="{post.imageURL}"/>
-						My Message: {post.message}
+						Message: {post.message}
 						Post Time:
 						<Moment format="YYYY/MM/DD">
-							{post.createdAt}
+							{post.createdAt} 
 						</Moment>
 					</div>
 				)}

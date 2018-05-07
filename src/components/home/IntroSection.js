@@ -1,14 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-class IntroSection extends React.Component {
+class IntroSection extends Component {
 	render() {
 		return (
-			<div>
-			<br/>
-			<br/>
-				...This is the body...
-			<br/>
-			<br/>			
+			<div class="container">
+			  <div class="jumbotron">
+			    <h1>Sample Jumpbtron...</h1>
+			    <p>Hilary is pretty cool</p>
+			  </div>
 			</div>
 		);
 	}

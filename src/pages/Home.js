@@ -1,14 +1,18 @@
 import React, {Component} from 'react';
-import {Helmet} from 'react-helmet';
 import IntroSection from '../components/home/IntroSection';
 import PostFeed from '../components/home/PostFeed';
+import AddPostButton from '../components/home/AddPostButton';
 
 class Home extends Component {
+	constructor(props) {
+		super(props);
+	}
+
 	render() {
 		return (
-			<div className="Home">
-				<Helmet title="Sheprd - Welcome"/>
+			<div>
 				<IntroSection/>
+				<AddPostButton/>
 				<PostFeed/>
 			</div>
 		);
