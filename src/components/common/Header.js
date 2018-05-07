@@ -13,8 +13,9 @@ class Header extends React.Component {
 	render() {
 		return (
 			<div>
-				<HeaderColumn text={'Home'} path="/" />
+				<HeaderColumn text={'Landing'} path="/" />
 				<HeaderColumn text={'About SGB'} path="/aboutSGB" />
+				<HeaderColumn text={'Home'} path="/Home" />
 			</div>
 		);
 	}
