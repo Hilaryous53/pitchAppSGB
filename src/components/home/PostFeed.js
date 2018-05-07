@@ -42,7 +42,7 @@ class PostFeed extends React.Component {
 			<div>
 				{this.state.posts.map(post =>
 					<div>
-						<img height="60px" src={post.imageURL} alt="{post.imageURL}"/>
+						<img height="160px" src={post.imageURL} alt="{post.imageURL}"/>
 						My Message: {post.message}
 						Post Time:
 						<Moment format="YYYY/MM/DD">

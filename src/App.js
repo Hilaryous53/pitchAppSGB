@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Route} from 'react-router-dom';
 import Header from './components/common/Header';
 import Home from './pages/Home';
-import AboutUs from './pages/AboutUs';
+import AboutSGB from './pages/AboutSGB';
 import Footer from './components/common/Footer';
 import ReactGA from 'react-ga';
 
@@ -32,11 +32,11 @@ class GAListener extends React.Component {
 class App extends Component {
 	render() {
 		return (
-			<div className="mainAppContainerDiv">
+			<div>
 				<GAListener>
 					<Header/>
 					<Route exact path="/" component={Home}/>
-					<Route path="/AboutUs" component={AboutUs}/>
+					<Route path="/AboutSGB" component={AboutSGB}/>
 					<Footer/>
 				</GAListener>
 			</div>
