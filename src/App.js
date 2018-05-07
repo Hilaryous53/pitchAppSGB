@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Route} from 'react-router-dom';
 import Header from './components/common/Header';
-import Landing from '.pages/Landing';
+import Landing from './pages/Landing';
 import Home from './pages/Home';
 import AboutSGB from './pages/AboutSGB';
 import Footer from './components/common/Footer';
