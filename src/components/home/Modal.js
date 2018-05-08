@@ -1,4 +1,5 @@
 import React from 'react';
+import PostForm from './PostForm';
 
 // The gray background
 const backdropStyle = {
@@ -29,6 +30,7 @@ const Modal = (props) => {
   return (
     <div style={backdropStyle}>
       <div style={modalStyle}>
+        <PostForm />
         <button onClick={props.closeModal}>
           Close
         </button>
