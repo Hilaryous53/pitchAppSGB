@@ -7,7 +7,7 @@ class Header extends Component {
       <div>
         <div id="landing-header">
           <h1>I Wanna Be SGB!</h1>
-          <a href="/campgrounds" class="btn btn-lg btn-primary">ENTER</a>
+          <a href="/Home" class="btn btn-lg btn-light">ENTER</a>
         </div>
         <ul class="slideshow">
           <li></li>
