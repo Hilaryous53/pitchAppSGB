@@ -6,7 +6,7 @@ class Footer extends React.Component {
 		return (
 			<div>
 				<Button color="warning">
-					This is a button
+					This is a button - i love you, Hilary
 				</Button>
 			</div>
 		);
