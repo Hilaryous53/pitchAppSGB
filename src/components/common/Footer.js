@@ -1,16 +1,9 @@
 import React from 'react';
-import { Button } from 'reactstrap';
 
-class Footer extends React.Component {
-	render() {
-		return (
-			<div>
-				<Button color="warning">
-					This is a button - i love you, Hilary
-				</Button>
-			</div>
-		);
-	}
-}
+const Footer = () => (
+  <div>
+    Made with love by Phi Nutrition LLC
+  </div>
+);
 
 export default Footer;
