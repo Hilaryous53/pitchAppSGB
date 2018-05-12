@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import Moment from 'react-moment';
 import GraphService from '../../service/GraphService';
 import AddPostButton from './AddPostButton';
-import graphUtil from './graph-util';
+import { Col, Row, Container } from 'react-grid-system';
+import { Card, CardBody, CardDeck, CardSubtitle, CardImgOverlay, Button, CardTitle, CardText, CardImg } from 'reactstrap';
 
 class PostFeed extends Component {
   constructor(props) {
@@ -84,20 +85,32 @@ class PostFeed extends Component {
           showModal={this.props.showModal}
           addPostMutation={this.handleSubmit}
         />
-        {this.state.posts.map(post => (
-          <div>
-            <img height="160px" src={post.imageURL} alt="{post.imageURL}" />
-            Message: {post.message}
-            Post Time:
-            <Moment format="YYYY/MM/DD H:mm">
-              {post.createdAt}
-            </Moment>
-          </div>
-        ),
-        )}
-      </div>
-    );
-  }
+        <Container>
+          <Row>
+            <Col md={8} offset={{ md: 2 }}>
+              {this.state.posts.map(post => (
+                
+
+
+const postStyle = {
+  width: 'auto',
+  height: '500px',
+  border: '1px solid gray',
+  margin: '50px 0px',
+};
+
+function renderPosts(img, firstName, created, message) {
+  return (
+    <Card style={postStyle}>
+      <CardImg top width="100%" src={img} alt="Card image cap" />
+      <CardBody>
+        <CardTitle>{firstName}</CardTitle>
+        <CardSubtitle>{created}</CardSubtitle>
+        <CardText>{message}</CardText>
+      </CardBody>
+    </Card>
+  );
 }
+
 
 export default PostFeed;
