@@ -26,15 +26,13 @@ class AddPostButton extends Component {
 			showModal: false
 		})
 		console.log('The close link was clicked.');
-	}
-
-
+	};
 
 	render() {
 		return (
-			<div>
+			<div style={addPost}>
 			<Button
-				color="info"
+				color="info" block
 				onClick={this.handleOpenClick}>
 					Add Post
 			</Button>
@@ -47,6 +45,14 @@ class AddPostButton extends Component {
 			</div>
 		);
 	}
+}
+
+const addPost = {
+  marginTop: '30px',
+  width: '300px',
+  display: 'block',
+  margin: 'auto',
+  paddingTop: '40px',
 }
 
 
