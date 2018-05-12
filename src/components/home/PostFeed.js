@@ -102,8 +102,11 @@ class PostFeed extends Component {
 
 
 const postStyle = {
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  display: 'flex',
   width: 'auto',
-  height: '500px',
+  height: 'flex',
   border: '1px solid gray',
   margin: '50px 0px',
 };
