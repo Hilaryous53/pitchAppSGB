@@ -4,9 +4,12 @@ import Modal from './Modal';
 
 const AddPostButton = (props) => (
   <div>
+  <br />
     <Button
+    style={buttonStyle}
       color="info"
       onClick={props.openClick}
+      block
     >
       Add Post
     </Button>
@@ -24,7 +27,11 @@ const addPost = {
   display: 'block',
   margin: 'auto',
   paddingTop: '40px',
-}
+};
+
+const buttonStyle = {
+  marginLeft: '10%',
+};
 
 
 export default AddPostButton;
