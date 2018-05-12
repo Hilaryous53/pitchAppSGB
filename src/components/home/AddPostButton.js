@@ -18,5 +18,13 @@ const AddPostButton = (props) => (
   </div>
 );
 
+const addPost = {
+  marginTop: '30px',
+  width: '300px',
+  display: 'block',
+  margin: 'auto',
+  paddingTop: '40px',
+}
+
 
 export default AddPostButton;
