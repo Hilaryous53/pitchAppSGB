@@ -1,29 +1,26 @@
-import React, {Component} from 'react';
-import GraphService from '../../service/GraphService';
-import Moment from 'react-moment';
+import React, { Component } from 'react';
+import { Col, Row, Container } from 'react-grid-system';
 import { Card, CardBody, CardDeck, CardSubtitle, CardImgOverlay, Button, CardTitle, CardText, CardImg } from 'reactstrap';
-import connor from "../../assets/images/connor.jpg";
-import shilpi from "../../assets/images/shilpi.jpg";
-import emma from "../../assets/images/emma.jpg";
-
+import Moment from 'react-moment';
+import GraphService from '../../service/GraphService';
 // document.body.style = 'background: #f6fbfc;';
 
 class PostFeed extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			posts: [],
-			isLoading: false,
-		};
-	}
+  constructor(props) {
+    super(props);
+    this.state = {
+      posts: [],
+      isLoading: false,
+    };
+  }
 
-	componentDidMount() {
-		this.setState({isLoading: true});
+componentDidMount() {
+    this.setState({isLoading: true});
 
 		GraphService.getAllPosts()
 			.then(data => {
 				let allPosts = [];
-				data.forEach(function(post) {
+				data.forEach((post) => {
 					if (post.message) {
 						allPosts.push(post);
 					}
@@ -40,39 +37,45 @@ class PostFeed extends Component {
 			});
 	}
 
-	render(){
-		return (
-    <CardDeck>
-      <Card>
-        <CardImg top width="100%" src= {connor} alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Gurus</CardTitle>
-          <CardSubtitle>Connor Diemand-Yauman</CardSubtitle>
-          <CardText>Astrid tells me what to eat. Eli tells me what to say. Together, they model how to act. They’re like inspirational gurus who I can periodically make out with.</CardText>
-          <Button>Button</Button>
-        </CardBody>
-      </Card>
-      <Card>
-        <CardImg top width="100%" src={shilpi} alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Zest</CardTitle>
-          <CardSubtitle>Shilpi Kumar</CardSubtitle>
-          <CardText>Astrid and Eli are an inspiration for doing everything with more zest: cooking, eating, writing, learning, laughing, running, biking, starting, and especially, loving.</CardText>
-          <Button>Button</Button>
-        </CardBody>
-      </Card>
-      <Card>
-        <CardImg top width="100%" src={emma} alt="Card image cap" />
-        <CardBody>
-          <CardTitle>Shoulder Massage</CardTitle>
-          <CardSubtitle>Emma Hodge</CardSubtitle>
-          <CardText>Being around Astrid and Eli makes me want to be more generous and give everyone a shoulder massage!</CardText>
-          <Button>Button</Button>
-        </CardBody>
-      </Card>
-    </CardDeck>
-  );
-	};
+
+  render() {
+    if (this.state.isLoading) {
+      return <p>Loading...</p>;
+    }
+    return (
+      <Container>
+        <Row>
+          <Col md={8} offset={{ md: 2 }}>
+            {this.state.posts.map(post =>
+              renderPosts(post.imageURL, post.posterFirstName, post.createdAt, post.message)
+            )}
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
+}
+
+
+const postStyle = {
+  width: 'auto',
+  height: '500px',
+  border: '1px solid gray',
+  margin: '50px 0px',
 };
+
+function renderPosts(img, firstName, created, message) {
+  return (
+    <Card style={postStyle}>
+      <CardImg top width="100%" src={img} alt="Card image cap" />
+      <CardBody>
+        <CardTitle>{firstName}</CardTitle>
+        <CardSubtitle>{created}</CardSubtitle>
+        <CardText>{message}</CardText>
+      </CardBody>
+    </Card>
+  );
+}
+
 
 export default PostFeed;
