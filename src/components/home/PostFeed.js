@@ -89,9 +89,9 @@ class PostFeed extends Component {
         <Container>
           <Row>
             <Col md={8} offset={{ md: 2 }}>
-              {this.state.posts.map(post => (
-                renderPosts(post.imageURL, post.firstName, post.createdAt, post.message)
-              ))}
+              {this.state.posts.map(post =>
+                renderPosts(post.imageURL, post.posterFirstName, post.createdAt, post.message)
+              )}
             </Col>
           </Row>
         </Container>
@@ -120,6 +120,5 @@ function renderPosts(img, firstName, created, message) {
     </Card>
   );
 }
-
 
 export default PostFeed;
