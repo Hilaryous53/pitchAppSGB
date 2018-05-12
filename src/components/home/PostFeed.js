@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
-import GraphService from '../../service/GraphService';
-import AddPostButton from './AddPostButton';
 import { Col, Row, Container } from 'react-grid-system';
 import { Card, CardBody, CardDeck, CardSubtitle, CardImgOverlay, Button, CardTitle, CardText, CardImg } from 'reactstrap';
+import GraphService from '../../service/GraphService';
+import graphUtil from './graph-util';
+import AddPostButton from './AddPostButton';
 
 class PostFeed extends Component {
   constructor(props) {
@@ -89,7 +90,15 @@ class PostFeed extends Component {
           <Row>
             <Col md={8} offset={{ md: 2 }}>
               {this.state.posts.map(post => (
-                
+                renderPosts(post.imageURL, post.firstName, post.createdAt, post.message)
+              ))}
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    );
+  }
+}
 
 
 const postStyle = {
