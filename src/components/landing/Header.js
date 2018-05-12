@@ -5,7 +5,7 @@ import './landing.css';
 //  any way we can reference the source of the image files?
 
 const Header = () => (
-  <div>
+  <div id="body">
     <div id="landing-header">
       <h1>I Wanna Be SGB!</h1>
       <a href="/home" className="btn btn-lg btn-primary">ENTER</a>
