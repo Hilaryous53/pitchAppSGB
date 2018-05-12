@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Col, Row, Container } from 'react-grid-system';
 import { Card, CardBody, CardDeck, CardSubtitle, CardImgOverlay, Button, CardTitle, CardText, CardImg } from 'reactstrap';
 import Moment from 'react-moment';
+import AddPostButton from './AddPostButton';
 import GraphService from '../../service/GraphService';
-// document.body.style = 'background: #f6fbfc;';
 
 class PostFeed extends Component {
   constructor(props) {
@@ -43,15 +43,23 @@ componentDidMount() {
       return <p>Loading...</p>;
     }
     return (
-      <Container>
-        <Row>
-          <Col md={8} offset={{ md: 2 }}>
-            {this.state.posts.map(post =>
-              renderPosts(post.imageURL, post.posterFirstName, post.createdAt, post.message)
-            )}
-          </Col>
-        </Row>
-      </Container>
+      <div>
+        <AddPostButton
+          openClick={this.props.handleOpenClick}
+          closeClick={this.props.handleCloseClick}
+          showModal={this.props.showModal}
+          addPostMutation={this.handleSubmit}
+        />
+        <Container>
+          <Row>
+            <Col md={8} offset={{ md: 2 }}>
+              {this.state.posts.map(post =>
+                renderPosts(post.imageURL, post.posterFirstName, post.createdAt, post.message)
+              )}
+            </Col>
+          </Row>
+        </Container>
+      </div>
     );
   }
 }
@@ -76,6 +84,5 @@ function renderPosts(img, firstName, created, message) {
     </Card>
   );
 }
-
 
 export default PostFeed;
