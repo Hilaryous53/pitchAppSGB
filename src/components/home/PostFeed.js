@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import Moment from 'react-moment';
 import { Col, Row, Container } from 'react-grid-system';
 import { Card, CardBody, CardDeck, CardSubtitle, CardImgOverlay, Button, CardTitle, CardText, CardImg } from 'reactstrap';
-import Moment from 'react-moment';
-import AddPostButton from './AddPostButton';
 import GraphService from '../../service/GraphService';
+import graphUtil from './graph-util';
+import AddPostButton from './AddPostButton';
 
 class PostFeed extends Component {
   constructor(props) {
@@ -12,35 +13,70 @@ class PostFeed extends Component {
       posts: [],
       isLoading: false,
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-componentDidMount() {
-    this.setState({isLoading: true});
+  componentWillMount() {
+    this.setState({
+      isLoading: true,
+    });
 
-		GraphService.getAllPosts()
-			.then(data => {
-				let allPosts = [];
-				data.forEach((post) => {
-					if (post.message) {
-						allPosts.push(post);
-					}
-				});
-				this.setState({
-					posts: allPosts,
-					isLoading: false,
-				});
-			})
-			.catch(error => {
-				this.setState({
-					posts: [],
-				});
-			});
-	}
+    GraphService.getAllPosts()
+      .then(data => {
+        this.setState({
+          posts: data,
+          isLoading: false,
+        });
+      }).catch(error => {
+        this.setState({
+          posts: [],
+        });
+      });
+  }
 
+  handleSubmit(message, firstName, lastName, e) {
+    let mutation = `mutation{
+    createPost(
+      message:"${message}"
+      posterFirstName:"${firstName}"
+      posterLastName: "${lastName}"
+      status: Live
+    ) {
+      id
+      message
+      imageURL
+      posterLastName
+      posterFirstName
+      createdAt
+    }
+  }`;
+    graphUtil.graphFetch(mutation)
+      .then(data => {
+        if (data.data.createPost.id) {
+          this.setState({
+            isLoading: true,
+          });
+          GraphService.getAllPosts()
+            .then(data2 => {
+              this.setState({
+                posts: data2,
+                isLoading: false,
+              });
+            }).catch(error => {
+              this.setState({
+                posts: [],
+              });
+            });
+          this.props.handleCloseClick(e);
+        } else {
+          console.log("uh oh..." + JSON.stringify(data.data));
+        }
+      });
+  }
 
   render() {
     if (this.state.isLoading) {
-      return <p>Loading...</p>;
+      return <p>Loading ...</p>;
     }
     return (
       <div>

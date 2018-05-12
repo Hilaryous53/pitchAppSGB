@@ -30,9 +30,14 @@ const Modal = (props) => {
   return (
     <div style={backdropStyle}>
       <div style={modalStyle}>
-        <PostForm />
-        <button onClick={props.closeModal}>
-          Close
+        <PostForm
+          addPostMutation={props.addPostMutation}
+        />
+        <br />
+        <button
+          onClick={props.closeModal}
+        >
+          Exit
         </button>
       </div>
     </div>
