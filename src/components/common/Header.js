@@ -21,7 +21,7 @@ class Header extends React.Component {
 
 	  render() {
 	    return (
-        <div>
+        <div style={navBar}>
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/">SGB</NavbarBrand>
             <Nav className="ml-auto" navbar>
@@ -38,6 +38,10 @@ class Header extends React.Component {
 	  }
 	}
 
+const navBar = {
+  body: 'black',
+  color: 'white',
+};
 
   <div>
   <Navbar color="light" light expand="md">

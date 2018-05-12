@@ -140,4 +140,27 @@ class PostFeed extends Component {
   }
 }
 
+const postStyle = {
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  display: 'flex',
+  width: 'auto',
+  height: 'flex',
+  border: '1px solid gray',
+  margin: '50px 0px',
+};
+
+function renderPosts(img, firstName, created, message) {
+  return (
+    <Card style={postStyle}>
+      <CardImg top width="100%" src={img} alt="Card image cap" />
+      <CardBody>
+        <CardTitle>{firstName}</CardTitle>
+        <CardSubtitle>{created}</CardSubtitle>
+        <CardText>{message}</CardText>
+      </CardBody>
+    </Card>
+  );
+}
+
 export default PostFeed;

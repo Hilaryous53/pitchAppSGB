@@ -1,5 +1,6 @@
-body {
-  background-color: #000;
+#body {
+  background-color: #fff;
+  height: 2000px;
 }
 
 #landing-header {
@@ -69,10 +70,10 @@ body {
     animation-timing-function: ease-out;
   }
   20% {
-    opacity: 1
+    opacity: 1;
   }
   30% {
-    opacity: 0
+    opacity: 0;
   }
 }
 
