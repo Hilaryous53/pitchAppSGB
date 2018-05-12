@@ -9,17 +9,19 @@ const jumboBackground = {
   backgroundRepeat: 'no-repeat',
   backgroundSize: 'cover',
   backgroundPosition: 'center',
-  height: '700px',
+  height: '600px',
   width: '100%',
   display: 'flex',
 };
 
 const jumboInside = {
-  textAlign: 'center',
+  textAlign: 'left',
   color: 'white',
-  paddingTop: '25%',
-  paddingLeft: '10%',
-}
+  paddingTop: '5%',
+  margin: '40px',
+  width: '25%',
+  fontSize: '80px',
+};
 
 
 class IntroSection extends Component {
@@ -27,8 +29,7 @@ class IntroSection extends Component {
 		return (
       <div style={jumboBackground}>
   	    <div style={jumboInside}>
-      	     <h1>Schanz Garbassi Bildner</h1>
-             <Button color="info">Add Post</Button>
+      	     <p>Schanz Garbassi Bildner</p>
         </div>
       </div>
 	  );

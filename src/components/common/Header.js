@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import HeaderColumn from './HeaderColumn';
-import { Nav, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink } from 'reactstrap';
+import { Nav, Navbar, NavbarBrand, NavItem, Dropdown, DropdownItem, DropdownToggle, DropdownMenu, NavLink } from 'reactstrap';
 
 
 class Header extends React.Component {
@@ -21,22 +21,37 @@ class Header extends React.Component {
 
 	  render() {
 	    return (
-	      <div>
-	        <Nav pills>
-	          <NavItem>
-	            <NavLink href="/" active>SGB</NavLink>
-	          </NavItem>
-	          <NavItem>
-	            <NavLink href="/aboutSGB">About</NavLink>
-	          </NavItem>
-	          <NavItem>
-	            <NavLink href="/Home">Feed</NavLink>
-	          </NavItem>
-	        </Nav>
-	      </div>
+        <div>
+        <Navbar color="light" light expand="md">
+          <NavbarBrand href="/">SGB</NavbarBrand>
+            <Nav className="ml-auto" navbar>
+              <NavItem>
+                <NavLink href="/aboutSGB">About</NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink href="/home">Feed</NavLink>
+              </NavItem>
+            </Nav>
+        </Navbar>
+        </div>
 	    );
 	  }
 	}
+
+
+  <div>
+  <Navbar color="light" light expand="md">
+    <NavbarBrand href="/">SGB</NavbarBrand>
+      <Nav className="ml-auto" navbar>
+        <NavItem>
+          <NavLink href="/aboutSGB">About</NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink href="https://github.com/reactstrap/reactstrap">Feed</NavLink>
+        </NavItem>
+      </Nav>
+  </Navbar>
+  </div>
 
 
 
