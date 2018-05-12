@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
-import graphUtil from './graph-util';
 
-function makeMutation(message, firstName, lastName) {
-  let mutation = `mutation{
-  createPost(
-    message:"${message}"
-    posterFirstName:"${firstName}"
-    posterLastName: "${lastName}"
-    status: Live
-  ) {
-    id
-  }
-}`;
-  graphUtil.graphFetch(mutation);
+function renderInput(htmlFor, id, value, handleChange) {
+  return (
+    <span>
+      <br />
+      <label htmlFor={htmlFor}>
+        <input placeholder={htmlFor} type="text" id={id} value={value} onChange={handleChange} />
+      </label>
+    </span>
+  );
 }
+
 
 class PostForm extends Component {
   constructor(props) {
@@ -22,10 +19,17 @@ class PostForm extends Component {
       message: '',
       firstName: '',
       lastName: '',
+      pictures: [],
     };
-
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.onDrop = this.onDrop.bind(this);
+  }
+
+  onDrop(picture) {
+    this.setState({
+      pictures: this.state.pictures.concat(picture),
+    });
   }
 
   handleChange(event) {
@@ -46,27 +50,18 @@ class PostForm extends Component {
     }
   }
 
-  handleSubmit(event) {
-    makeMutation(this.state.message, this.state.firstName, this.state.lastName);
-    event.preventDefault();
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.addPostMutation(this.state.message, this.state.firstName, this.state.lastName);
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <label htmlFor="Message">
-          Message:
-          <input type="text" id="message" value={this.state.message} onChange={this.handleChange} />
-        </label>
-        <label htmlFor="FirstName">
-          First Name:
-          <input type="text" id="firstName" value={this.state.firstName} onChange={this.handleChange} />
-        </label>
-        <label htmlFor="LastName">
-          Last Name:
-          <input type="text" id="lastName" value={this.state.lastName} onChange={this.handleChange} />
-        </label>
-
+      Tell the world why you love SGB!
+        {renderInput('Message', 'message', this.state.message, this.handleChange)}
+        {renderInput('FirstName', 'firstName', this.state.firstName, this.handleChange)}
+        {renderInput('LastName', 'lastName', this.state.lastName, this.handleChange)}
         <br />
         <input type="submit" value="Submit" />
       </form>
