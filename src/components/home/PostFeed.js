@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Moment from 'react-moment';
 import { Col, Row, Container } from 'react-grid-system';
 import { Card, CardBody, CardDeck, CardSubtitle, CardImgOverlay, Button, CardTitle, CardText, CardImg } from 'reactstrap';
 import GraphService from '../../service/GraphService';
 import graphUtil from './graph-util';
 import AddPostButton from './AddPostButton';
+import Post from './Post';
 
 class PostFeed extends Component {
   constructor(props) {
@@ -14,6 +14,7 @@ class PostFeed extends Component {
       isLoading: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.removePost = this.removePost.bind(this);
   }
 
   componentWillMount() {
@@ -74,6 +75,38 @@ class PostFeed extends Component {
       });
   }
 
+  removePost(id) {
+    let mutation = `mutation{
+    updatePost(
+      id:"${id}"
+      status: Canceled
+    ) {
+      id
+    }
+  }`;
+    graphUtil.graphFetch(mutation)
+      .then(data => {
+        if (data.data.updatePost.id) {
+          this.setState({
+            isLoading: true,
+          });
+          GraphService.getAllPosts()
+            .then(data2 => {
+              this.setState({
+                posts: data2,
+                isLoading: false,
+              });
+            }).catch(error => {
+              this.setState({
+                posts: [],
+              });
+            });
+        } else {
+          console.log("uh oh..." + JSON.stringify(data.data));
+        }
+      });
+  }
+
   render() {
     if (this.state.isLoading) {
       return <p>Loading ...</p>;
@@ -89,9 +122,16 @@ class PostFeed extends Component {
         <Container>
           <Row>
             <Col md={8} offset={{ md: 2 }}>
-              {this.state.posts.map(post =>
-                renderPosts(post.imageURL, post.posterFirstName, post.createdAt, post.message)
-              )}
+              {this.state.posts.map(post => (
+                <Post
+                  img={post.imageURL}
+                  firstName={post.posterFirstName}
+                  created={post.createdAt}
+                  message={post.message}
+                  id={post.id}
+                  removePost={this.removePost}
+                />
+              ))}
             </Col>
           </Row>
         </Container>
@@ -99,7 +139,6 @@ class PostFeed extends Component {
     );
   }
 }
-
 
 const postStyle = {
   backgroundSize: 'cover',
