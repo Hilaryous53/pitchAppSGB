@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Dropzone from 'react-dropzone';
+import axios from 'axios';
 
 function renderInput(htmlFor, id, value, handleChange) {
   return (
@@ -19,16 +21,16 @@ class PostForm extends Component {
       message: '',
       firstName: '',
       lastName: '',
-      pictures: [],
+      file: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.onDrop = this.onDrop.bind(this);
   }
 
-  onDrop(picture) {
+  onDrop(files) {
     this.setState({
-      pictures: this.state.pictures.concat(picture),
+      file: files[0],
     });
   }
 
@@ -50,23 +52,38 @@ class PostForm extends Component {
     }
   }
 
-  handleSubmit(e) {
+  async handleSubmit(e) {
     e.preventDefault();
-    this.props.addPostMutation(this.state.message, this.state.firstName, this.state.lastName);
+    const formData = new FormData();
+    formData.append('file', this.state.file);
+    formData.append('upload_preset', 'g1njelpj');
+
+    const response = await axios.post(
+      'https://api.cloudinary.com/v1_1/phi/image/upload',
+      formData,
+    );
+    this.props.addPostMutation(this.state.message, this.state.firstName, this.state.lastName, response.data.url);
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-      Tell the world why you love SGB!
+      <form style={formStyle} onSubmit={this.handleSubmit}>
+      Share your moment with SGB!
         {renderInput('Message', 'message', this.state.message, this.handleChange)}
         {renderInput('FirstName', 'firstName', this.state.firstName, this.handleChange)}
         {renderInput('LastName', 'lastName', this.state.lastName, this.handleChange)}
+        <Dropzone onDrop={this.onDrop}>
+          <p>Add photo here!</p>
+        </Dropzone>
         <br />
         <input type="submit" value="Submit" />
       </form>
     );
   }
 }
+
+const formStyle = {
+  zIndex: 1,
+};
 
 export default PostForm;
