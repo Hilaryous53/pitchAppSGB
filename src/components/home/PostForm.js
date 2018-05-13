@@ -1,15 +1,39 @@
 import React, { Component } from 'react';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
+import { Button, FormGroup, Label, Input, FormText } from 'reactstrap';
 
-function renderInput(htmlFor, id, value, handleChange) {
+function renderInput(htmlFor, id, value, handleChange, type) {
   return (
-    <span>
+    <div>
+      <Label for={htmlFor}>{htmlFor}</Label>
+      <Input placeholder={htmlFor} type={type} id={id} value={value} onChange={handleChange} />
       <br />
-      <label htmlFor={htmlFor}>
-        <input placeholder={htmlFor} type="text" id={id} value={value} onChange={handleChange} />
-      </label>
-    </span>
+    </div>
+  );
+}
+
+function renderSubmit(showSubmitButton) {
+  if (showSubmitButton) {
+    return (
+      <input type="submit" value="Submit" />
+    );
+  }
+  return (
+    <p>Loading...</p>
+  );
+}
+
+function renderDropZone(handleDrop, file) {
+  if (file) {
+    return (
+      <p>{"Photo Added! Click 'Submit' when you're ready"}</p>
+    );
+  }
+  return (
+    <Dropzone onDrop={handleDrop}>
+      <p>Add photo here!</p>
+    </Dropzone>
   );
 }
 
@@ -22,6 +46,7 @@ class PostForm extends Component {
       firstName: '',
       lastName: '',
       file: '',
+      submitIsEnabled: true,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -54,6 +79,9 @@ class PostForm extends Component {
 
   async handleSubmit(e) {
     e.preventDefault();
+    this.setState({
+      submitIsEnabled: false,
+    });
     const formData = new FormData();
     formData.append('file', this.state.file);
     formData.append('upload_preset', 'g1njelpj');
@@ -67,16 +95,16 @@ class PostForm extends Component {
 
   render() {
     return (
-      <form style={formStyle} onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit}>
       Share your moment with SGB!
-        {renderInput('Message', 'message', this.state.message, this.handleChange)}
-        {renderInput('FirstName', 'firstName', this.state.firstName, this.handleChange)}
-        {renderInput('LastName', 'lastName', this.state.lastName, this.handleChange)}
-        <Dropzone onDrop={this.onDrop}>
-          <p>Add photo here!</p>
-        </Dropzone>
-        <br />
-        <input type="submit" value="Submit" />
+        <FormGroup>
+          {renderInput('Message', 'message', this.state.message, this.handleChange, 'textarea')}
+          {renderInput('FirstName', 'firstName', this.state.firstName, this.handleChange, 'text')}
+          {renderInput('LastName', 'lastName', this.state.lastName, this.handleChange, 'text')}
+          <br />
+          {renderDropZone(this.onDrop, this.state.file)}
+        </FormGroup>
+        {renderSubmit(this.state.submitIsEnabled)}
       </form>
     );
   }
