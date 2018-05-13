@@ -5,7 +5,7 @@ class AboutSGB extends Component {
 	render() {
 		return (
 			<div>
-				<Header/>
+
 			</div>
 		);
 	}

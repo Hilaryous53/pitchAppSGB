@@ -1,6 +1,22 @@
 #body {
   background-color: #fff;
-  height: 2000px;
+  height: 1400px;
+}
+
+.intro {
+  color: white;
+  font-size: 20px;
+  margin: 50px;
+}
+
+.title {
+  font-size: 100px;
+  letter-spacing: 15px;
+}
+
+.para {
+  color: white;
+  font-size: 30px;
 }
 
 #landing-header {

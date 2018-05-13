@@ -25,12 +25,6 @@ class Header extends React.Component {
         <Navbar color="light" light expand="md">
           <NavbarBrand href="/">SGB</NavbarBrand>
             <Nav className="ml-auto" navbar>
-              <NavItem>
-                <NavLink href="/aboutSGB">About</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink href="/home">Feed</NavLink>
-              </NavItem>
             </Nav>
         </Navbar>
         </div>
