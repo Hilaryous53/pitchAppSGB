@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import Dropzone from 'react-dropzone';
 import axios from 'axios';
-import { Button, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { FormText, Form, FormGroup, Label, Input, Col } from 'reactstrap';
 
 function renderInput(htmlFor, id, value, handleChange, type) {
   return (
-    <div>
-      <Label for={htmlFor}>{htmlFor}</Label>
-      <Input placeholder={htmlFor} type={type} id={id} value={value} onChange={handleChange} />
-      <br />
-    </div>
+    <FormGroup row>
+      <Label for={htmlFor} sm={2}>{htmlFor}</Label>
+      <Col sm={10}>
+        <Input placeholder={htmlFor} type={type} id={id} value={value} onChange={handleChange} />
+      </Col>
+    </FormGroup>
   );
 }
 
@@ -31,12 +31,17 @@ function renderDropZone(handleDrop, file) {
     );
   }
   return (
-    <Dropzone onDrop={handleDrop}>
-      <p>Add photo here!</p>
-    </Dropzone>
+    <FormGroup row>
+      <Label for="exampleFile" sm={2}>Photo</Label>
+      <Col sm={10}>
+        <Input onChange={handleDrop} placeHolder="image" type="file" id="imageId" />
+        <FormText color="muted">
+          Yea, awesome
+        </FormText>
+      </Col>
+    </FormGroup>
   );
 }
-
 
 class PostForm extends Component {
   constructor(props) {
@@ -53,9 +58,9 @@ class PostForm extends Component {
     this.onDrop = this.onDrop.bind(this);
   }
 
-  onDrop(files) {
+  onDrop(event) {
     this.setState({
-      file: files[0],
+      file: document.getElementById('imageId').files[0],
     });
   }
 
@@ -95,17 +100,13 @@ class PostForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-      Share your moment with SGB!
-        <FormGroup>
-          {renderInput('Message', 'message', this.state.message, this.handleChange, 'textarea')}
-          {renderInput('FirstName', 'firstName', this.state.firstName, this.handleChange, 'text')}
-          {renderInput('LastName', 'lastName', this.state.lastName, this.handleChange, 'text')}
-          <br />
-          {renderDropZone(this.onDrop, this.state.file)}
-        </FormGroup>
+      <Form onSubmit={this.handleSubmit}>
+        <strong>Share your moment with SGB!</strong>
+        {renderInput('Name', 'firstName', this.state.firstName, this.handleChange, 'text')}
+        {renderInput('Message', 'message', this.state.message, this.handleChange, 'textarea')}
+        {renderDropZone(this.onDrop, this.state.file)}
         {renderSubmit(this.state.submitIsEnabled)}
-      </form>
+      </Form>
     );
   }
 }
