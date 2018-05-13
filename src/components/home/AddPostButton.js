@@ -1,18 +1,24 @@
 import React from 'react';
 import { Button } from 'reactstrap';
+import { Col, Row, Container } from 'react-grid-system';
 import Modal from './Modal';
 
 const AddPostButton = (props) => (
   <div>
   <br />
-    <Button
-    style={buttonStyle}
-      color="info"
-      onClick={props.openClick}
-      block
-    >
-      Add Post
-    </Button>
+    <Container>
+      <Row>
+        <Col md={8} offset={{ md: 2 }}>
+          <Button
+          style={buttonStyle}
+            outline color="info" block
+            onClick={props.openClick}
+          >
+            Add Post
+          </Button>
+        </Col>
+      </Row>
+    </Container>
     <Modal
       closeModal={props.closeClick}
       showModal={props.showModal}
@@ -30,7 +36,8 @@ const addPost = {
 };
 
 const buttonStyle = {
-  marginLeft: '10%',
+  position: 'relative',
+  textAlign: 'center',
 };
 
 
