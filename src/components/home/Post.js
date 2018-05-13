@@ -3,8 +3,11 @@ import Moment from 'react-moment';
 import { Card, CardBody, CardSubtitle, Button, CardTitle, CardText, CardImg } from 'reactstrap';
 
 const postStyle = {
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  display: 'flex',
   width: 'auto',
-  height: '500px',
+  height: 'flex',
   border: '1px solid gray',
   margin: '50px 0px',
 };
