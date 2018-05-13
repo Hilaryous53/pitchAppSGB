@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
 import Dropzone from 'react-dropzone';
-import fetch from 'isomorphic-fetch';
 import axios from 'axios';
 
 function renderInput(htmlFor, id, value, handleChange) {

@@ -6,12 +6,12 @@ const AddPostButton = (props) => (
   <div>
   <br />
     <Button
-    style={buttonStyle}
+      style={buttonStyle}
       color="info"
       onClick={props.openClick}
       block
     >
-      Add Post
+      Share your SGB Moment
     </Button>
     <Modal
       closeModal={props.closeClick}
