@@ -34,7 +34,6 @@ class GAListener extends React.Component {
 const App = () => (
   <div>
     <GAListener>
-      <Header />
       <Route exact path="/" component={Landing} />
       <Route path="/AboutSGB" component={AboutSGB} />
       <Route path="/Home" component={Home} />

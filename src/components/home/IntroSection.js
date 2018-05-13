@@ -23,13 +23,18 @@ const jumboInside = {
   fontSize: '80px',
 };
 
+const titleStyle = {
+  color: 'white',
+}
+
+
 
 class IntroSection extends Component {
 	render() {
 		return (
       <div style={jumboBackground}>
   	    <div style={jumboInside}>
-      	     <p>Schanz Garbassi Bildner</p>
+      	     <p><a href="/" style={titleStyle}>Schanz Garbassi Bildner</a></p>
         </div>
       </div>
 	  );
