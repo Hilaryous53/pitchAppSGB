@@ -35,12 +35,13 @@ class PostFeed extends Component {
       });
   }
 
-  handleSubmit(message, firstName, lastName, e) {
+  handleSubmit(message, firstName, lastName, imageURL, e) {
     let mutation = `mutation{
     createPost(
       message:"${message}"
       posterFirstName:"${firstName}"
       posterLastName: "${lastName}"
+      imageURL: "${imageURL}"
       status: Live
     ) {
       id
