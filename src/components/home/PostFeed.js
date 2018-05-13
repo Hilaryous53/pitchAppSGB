@@ -142,6 +142,7 @@ class PostFeed extends Component {
 }
 
 const postStyle = {
+  zIndex: '-1',
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   display: 'flex',

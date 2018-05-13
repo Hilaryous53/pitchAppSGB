@@ -1,24 +1,29 @@
 import React from 'react';
 import { Button } from 'reactstrap';
+import { Col, Row, Container } from 'react-grid-system';
 import Modal from './Modal';
 
 const AddPostButton = (props) => (
-  <div>
-  <br />
-    <Button
-      style={buttonStyle}
-      color="info"
-      onClick={props.openClick}
-      block
-    >
-      Share your SGB Moment
-    </Button>
-    <Modal
-      closeModal={props.closeClick}
-      showModal={props.showModal}
-      addPostMutation={props.addPostMutation}
-    />
-  </div>
+  <Container>
+    <Row>
+      <Col md={8} offset={{ md: 2 }}>
+      <br />
+        <Button
+          style={buttonStyle}
+          color="info"
+          onClick={props.openClick}
+          block
+        >
+          Share Your SGB Moment
+        </Button>
+        <Modal
+          closeModal={props.closeClick}
+          showModal={props.showModal}
+          addPostMutation={props.addPostMutation}
+        />
+      </Col>
+    </Row>
+  </Container>
 );
 
 const addPost = {
@@ -30,7 +35,8 @@ const addPost = {
 };
 
 const buttonStyle = {
-  marginLeft: '10%',
+  position: 'relative',
+  textAlign: 'center',
 };
 
 

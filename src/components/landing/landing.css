@@ -1,11 +1,11 @@
 #body {
   background-color: #000;
-  height: 1400px;
+  height: 900px;
 }
 
 .intro {
   color: white;
-  font-size: 20px;
+  font-size: 16px;
   margin: 50px;
 }
 
@@ -23,7 +23,7 @@
   z-index: 1;
   position: relative;
   text-align: center;
-  padding-top: 40vh;
+  padding-top: 25vh;
 }
 
 #landing-header h1 {
@@ -57,10 +57,10 @@
 }
 
 .slideshow li:nth-child(1) {
-  background-image: url(../../assets/images/five.jpg)
+  background-image: url(../../assets/images/one.jpg)
 }
 .slideshow li:nth-child(2) {
-  background-image: url(../../assets/images/four.jpg);
+  background-image: url(../../assets/images/two.jpg);
   animation-delay: 4s;
 }
 .slideshow li:nth-child(3) {
@@ -68,11 +68,11 @@
   animation-delay: 8s;
 }
 .slideshow li:nth-child(4) {
-  background-image: url(../../assets/images/two.jpg);
+  background-image: url(../../assets/images/one.jpg);
   animation-delay: 12s;
 }
 .slideshow li:nth-child(5) {
-  background-image: url(../../assets/images/one.jpg);
+  background-image: url(../../assets/images/two.jpg);
   animation-delay: 16s;
 }
 

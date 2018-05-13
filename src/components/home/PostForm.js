@@ -96,7 +96,7 @@ class PostForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-      Tell the world why you love SGB!
+      Share your moment with SGB!
         <FormGroup>
           {renderInput('Message', 'message', this.state.message, this.handleChange, 'textarea')}
           {renderInput('FirstName', 'firstName', this.state.firstName, this.handleChange, 'text')}
@@ -109,5 +109,9 @@ class PostForm extends Component {
     );
   }
 }
+
+const formStyle = {
+  zIndex: 1,
+};
 
 export default PostForm;

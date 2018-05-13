@@ -3,6 +3,7 @@ import PostForm from './PostForm';
 
 // The gray background
 const backdropStyle = {
+  zIndex: '2',
   position: 'fixed',
   top: 0,
   bottom: 0,
